@@ -2,13 +2,14 @@ Summary:	lttoolbox-based translation modules generator
 Summary(pl.UTF-8):	Oparty na pakiecie lttoolbox generator modułów tłumaczących
 Name:		apertium
 Version:	3.2.0
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Applications/Text
 Source0:	http://downloads.sourceforge.net/apertium/%{name}-%{version}.tar.gz
 # Source0-md5:	803562e5ea0a5cd9ccb5ea79cca0d76d
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-DESTDIR.patch
+Patch2:		pcre.patch
 URL:		http://www.apertium.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -63,6 +64,7 @@ Statyczna biblioteka apertium.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
