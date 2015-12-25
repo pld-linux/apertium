@@ -1,5 +1,5 @@
---- apertium-3.2.0/configure.ac.orig	2010-03-14 16:14:34.000000000 +0100
-+++ apertium-3.2.0/configure.ac	2010-11-28 08:07:17.219099937 +0100
+--- apertium-3.4.0/configure.ac.orig	2015-12-25 10:31:10.304799071 +0100
++++ apertium-3.4.0/configure.ac	2015-12-25 10:33:43.264792644 +0100
 @@ -54,68 +54,6 @@
  
  # Checks for programs.
@@ -26,7 +26,7 @@
 -  CXXFLAGS="$CXXFLAGS -Wall -ansi -fomit-frame-pointer"
 -else
 -  if test x$MinGW = xyes
--  then 
+-  then
 -    AC_MSG_RESULT([MinGW])
 -    CFLAGS="$CFLAGS -Wall -march=i686 -O3 -DMINGW -fomit-frame-pointer \
 -	        -funroll-loops -I/include -L/lib"
@@ -35,7 +35,7 @@
 -    CPPFLAGS="$CPPFLAGS -I/include"
 -  else
 -    if test x$Cygwin = xyes
--    then 
+-    then
 -      AC_MSG_RESULT([Cygwin])
 -      CFLAGS="$CFLAGS -Wall -march=i686 -O3 -fomit-frame-pointer \
 -           -funroll-loops"
@@ -62,7 +62,7 @@
 -          CXXFLAGS="-Wall -ansi -O3 $CXXFLAGS"
 -        fi
 -      fi
--    fi    
+-    fi
 -  fi
 -fi
 -

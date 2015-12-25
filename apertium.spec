@@ -1,26 +1,29 @@
 Summary:	lttoolbox-based translation modules generator
 Summary(pl.UTF-8):	Oparty na pakiecie lttoolbox generator modułów tłumaczących
 Name:		apertium
-Version:	3.2.0
-Release:	5
+Version:	3.4.0
+Release:	1
 License:	GPL v2+
 Group:		Applications/Text
 Source0:	http://downloads.sourceforge.net/apertium/%{name}-%{version}.tar.gz
-# Source0-md5:	803562e5ea0a5cd9ccb5ea79cca0d76d
+# Source0-md5:	5aa356d4840d6ffb1490a3b6639930bd
 Patch0:		%{name}-opt.patch
-Patch1:		%{name}-DESTDIR.patch
-Patch2:		pcre.patch
 URL:		http://www.apertium.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
+BuildRequires:	bash
+BuildRequires:	flex
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxml2-devel >= 1:2.6.17
-BuildRequires:	lttoolbox-devel >= 3.2.0
+BuildRequires:	libxml2-progs >= 1:2.6.17
+BuildRequires:	libxslt-progs
+BuildRequires:	lttoolbox-devel >= 3.3.1
 BuildRequires:	pcre-cxx-devel >= 6.4
 BuildRequires:	pkgconfig >= 1:0.15
 Requires:	libxml2 >= 1:2.6.17
 Requires:	libxslt-progs
+Requires:	lttoolbox >= 3.3.1
 Requires:	pcre-cxx >= 6.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -39,7 +42,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
 Requires:	libxml2-devel >= 1:2.6.17
-Requires:	apertium-devel >= 3.2.0
+Requires:	lttoolbox-devel >= 3.3.1
 Requires:	pcre-cxx-devel >= 6.4
 
 %description devel
@@ -63,8 +66,6 @@ Statyczna biblioteka apertium.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -93,8 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README README-MODES
 %attr(755,root,root) %{_bindir}/apertium
 %attr(755,root,root) %{_bindir}/apertium-*
-%attr(755,root,root) %{_libdir}/libapertium3-3.2.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libapertium3-3.2.so.0
+%attr(755,root,root) %{_libdir}/libapertium3-3.4.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libapertium3-3.4.so.0
 %{_datadir}/apertium
 %{_mandir}/man1/apertium.1*
 %{_mandir}/man1/apertium-*.1*
@@ -103,8 +104,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libapertium3.so
 %{_libdir}/libapertium3.la
-%{_includedir}/apertium-3.2
-%{_pkgconfigdir}/apertium-3.2.pc
+%{_includedir}/apertium-3.4
+%{_pkgconfigdir}/apertium.pc
+%{_aclocaldir}/apertium.m4
 
 %files static
 %defattr(644,root,root,755)
