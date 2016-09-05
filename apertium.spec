@@ -1,13 +1,12 @@
 Summary:	lttoolbox-based translation modules generator
 Summary(pl.UTF-8):	Oparty na pakiecie lttoolbox generator modułów tłumaczących
 Name:		apertium
-Version:	3.4.0
+Version:	3.4.2
 Release:	1
 License:	GPL v2+
 Group:		Applications/Text
 Source0:	http://downloads.sourceforge.net/apertium/%{name}-%{version}.tar.gz
-# Source0-md5:	5aa356d4840d6ffb1490a3b6639930bd
-Patch0:		%{name}-opt.patch
+# Source0-md5:	c739b10e0a69c43e98590b1c064bcf89
 URL:		http://www.apertium.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -18,12 +17,12 @@ BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxml2-devel >= 1:2.6.17
 BuildRequires:	libxml2-progs >= 1:2.6.17
 BuildRequires:	libxslt-progs
-BuildRequires:	lttoolbox-devel >= 3.3.1
+BuildRequires:	lttoolbox-devel >= 3.3.3
 BuildRequires:	pcre-cxx-devel >= 6.4
 BuildRequires:	pkgconfig >= 1:0.15
 Requires:	libxml2 >= 1:2.6.17
 Requires:	libxslt-progs
-Requires:	lttoolbox >= 3.3.1
+Requires:	lttoolbox >= 3.3.3
 Requires:	pcre-cxx >= 6.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,7 +41,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
 Requires:	libxml2-devel >= 1:2.6.17
-Requires:	lttoolbox-devel >= 3.3.1
+Requires:	lttoolbox-devel >= 3.3.3
 Requires:	pcre-cxx-devel >= 6.4
 
 %description devel
@@ -65,7 +64,6 @@ Statyczna biblioteka apertium.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
