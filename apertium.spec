@@ -1,12 +1,12 @@
 Summary:	lttoolbox-based translation modules generator
 Summary(pl.UTF-8):	Oparty na pakiecie lttoolbox generator modułów tłumaczących
 Name:		apertium
-Version:	3.4.2
+Version:	3.5.2
 Release:	1
 License:	GPL v2+
 Group:		Applications/Text
 Source0:	http://downloads.sourceforge.net/apertium/%{name}-%{version}.tar.gz
-# Source0-md5:	c739b10e0a69c43e98590b1c064bcf89
+# Source0-md5:	9cce54e577dd4a1cc6f834e1bdd0bf73
 URL:		http://www.apertium.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -73,7 +73,7 @@ Statyczna biblioteka apertium.
 %{__automake}
 %configure
 
-%{__make} -j1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -92,8 +92,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README README-MODES
 %attr(755,root,root) %{_bindir}/apertium
 %attr(755,root,root) %{_bindir}/apertium-*
-%attr(755,root,root) %{_libdir}/libapertium3-3.4.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libapertium3-3.4.so.0
+%attr(755,root,root) %{_libdir}/libapertium3-3.5.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libapertium3-3.5.so.1
 %{_datadir}/apertium
 %{_mandir}/man1/apertium.1*
 %{_mandir}/man1/apertium-*.1*
@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libapertium3.so
 %{_libdir}/libapertium3.la
-%{_includedir}/apertium-3.4
+%{_includedir}/apertium-3.5
 %{_pkgconfigdir}/apertium.pc
 %{_aclocaldir}/apertium.m4
 
