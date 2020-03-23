@@ -7,6 +7,9 @@ License:	GPL v2+
 Group:		Applications/Text
 Source0:	http://downloads.sourceforge.net/apertium/%{name}-%{version}.tar.gz
 # Source0-md5:	9cce54e577dd4a1cc6f834e1bdd0bf73
+Source1:	https://raw.githubusercontent.com/apertium/apertium-get/master/apertium-get
+# Source1-md5:	e5c863207affed7db787138ae878ad56
+Patch0:		no-apertium-get.patch
 URL:		http://www.apertium.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -80,6 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+cp -p %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
