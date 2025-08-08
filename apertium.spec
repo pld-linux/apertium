@@ -1,15 +1,13 @@
 Summary:	lttoolbox-based translation modules generator
 Summary(pl.UTF-8):	Oparty na pakiecie lttoolbox generator modułów tłumaczących
 Name:		apertium
-Version:	3.5.2
-Release:	3
+Version:	3.9.12
+Release:	1
 License:	GPL v2+
 Group:		Applications/Text
-Source0:	http://downloads.sourceforge.net/apertium/%{name}-%{version}.tar.gz
-# Source0-md5:	9cce54e577dd4a1cc6f834e1bdd0bf73
-Source1:	https://raw.githubusercontent.com/apertium/apertium-get/master/apertium-get
-# Source1-md5:	e5c863207affed7db787138ae878ad56
-Patch0:		no-apertium-get.patch
+Source0:	https://github.com/apertium/apertium/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	b272baa484ac5977a7f9ea09f49c548f
+Patch0:		shebang.patch
 URL:		http://www.apertium.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -69,6 +67,21 @@ Statyczna biblioteka apertium.
 %setup -q
 %patch -P0 -p1
 
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+python3(\s|$),#!%{__python3}\1,' \
+      scripts/apertium-editdist \
+      scripts/apertium-filter-rules \
+      scripts/apertium-filter-xml \
+      scripts/apertium-genvdix \
+      scripts/apertium-genvldix \
+      scripts/apertium-genvrdix \
+      scripts/apertium-metalrx
+
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+bash(\s|$),#!/bin/bash\1,' \
+      scripts/apertium-filter-dix.in \
+      scripts/apertium-metalrx-to-lrx.in \
+      scripts/apertium-translate-to-default-equivalent.in
+
+
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -85,8 +98,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -p %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -98,20 +109,20 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README README-MODES
 %attr(755,root,root) %{_bindir}/apertium
 %attr(755,root,root) %{_bindir}/apertium-*
-%attr(755,root,root) %{_libdir}/libapertium3-3.5.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libapertium3-3.5.so.1
+%attr(755,root,root) %{_libdir}/libapertium.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libapertium.so.3
 %{_datadir}/apertium
 %{_mandir}/man1/apertium.1*
 %{_mandir}/man1/apertium-*.1*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libapertium3.so
-%{_libdir}/libapertium3.la
-%{_includedir}/apertium-3.5
+%attr(755,root,root) %{_libdir}/libapertium.so
+%{_libdir}/libapertium.la
+%{_includedir}/apertium
 %{_pkgconfigdir}/apertium.pc
 %{_aclocaldir}/apertium.m4
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libapertium3.a
+%{_libdir}/libapertium.a
